@@ -1,6 +1,20 @@
 AI-system-for-detecting-safety-violations-using-machine-vision
+
 Goal — To develop an intelligent machine vision system for real-time automatic detection of safety violations at industrial manufacturing plants.
 
+<hr>
+Table of Contents
+1. Requirements Analysis and Architecture Design
+
+2. AI Model and Backend Development
+
+3. Web Interface Development
+
+4. Integration and Deployment
+
+5. Testing, Documentation, and Implementation
+
+<hr>
 1. Requirements Analysis and Architecture Design
 1.1. Specification Definition
 Analysis of typical workplace safety violations in manufacturing environments (missing hard hats, lack of protective clothing, entering danger zones, smoke detection, fire hazards).
@@ -14,13 +28,13 @@ Selection of input data formats (RTSP streams, recorded video files, USB cameras
 1.2. Technology Selection and System Design
 Selection of computer vision frameworks (YOLOv8, TensorFlow, OpenCV).
 
-Design of interaction scheme:
-IP Camera ↔ Backend Processor (GPU Server) ↔ Web Interface / Alert System.
+Design of interaction scheme: IP Camera ↔ Backend Processor (GPU Server) ↔ Web Interface / Alert System.
 
 Database structure design for storing incidents, violation snapshots, and statistics.
 
 Development of communication protocols (REST API, WebSocket, RTSP).
 
+<hr>
 2. AI Model and Backend Development
 2.1. Training and Optimization of Computer Vision Models
 Training neural network models for object detection (hard hats, safety vests, people).
@@ -42,6 +56,7 @@ Alert generation and violation snapshot storage.
 
 REST API development for camera management, statistics retrieval, and event logs.
 
+<hr>
 3. Web Interface Development
 3.1. Monitoring Dashboard
 Interactive workshop map displaying active cameras and zone statuses.
@@ -59,6 +74,7 @@ Shift and employee report generation.
 
 Incident archive viewing with filtering capabilities.
 
+<hr>
 4. Integration and Deployment
 4.1. Factory Infrastructure Integration
 Connection to existing video surveillance systems (RTSP-compatible cameras).
@@ -72,6 +88,7 @@ Creation of test bench for system capability presentations.
 
 Set of demonstration scenarios: hard hat detection, smoke detection, perimeter control.
 
+<hr>
 5. Testing, Documentation, and Implementation
 5.1. Comprehensive Testing
 Model accuracy testing on real-world data.
@@ -91,3 +108,4 @@ Final version deployment on client server.
 
 Planning of future development stages (new violation classes, integration with access control systems).
 
+<hr>
