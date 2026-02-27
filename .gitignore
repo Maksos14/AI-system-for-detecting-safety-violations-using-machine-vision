@@ -1,0 +1,29 @@
+# Visual Studio cache files
+.vs/
+*.ipch
+*.sdf
+*.opensdf
+*.opendb
+*.VC.db
+
+# Build results
+[Dd]ebug/
+[Dd]ebug Public/
+[Rr]elease/
+[Rr]elease Public/
+x64/
+x86/
+*.exe
+*.pdb
+*.dll
+
+# VS Code files
+.vscode/
+
+# Compiled Object files
+*.obj
+*.o
+
+# Precompiled Headers
+*.gch
+*.pch
