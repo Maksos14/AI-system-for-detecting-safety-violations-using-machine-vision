@@ -1,111 +1,60 @@
-AI-system-for-detecting-safety-violations-using-machine-vision
+# Artificial intelligence system for detecting safety violations 
 
-Goal — To develop an intelligent machine vision system for real-time automatic detection of safety violations at industrial manufacturing plants.
+## Description
 
-<hr>
-Table of Contents
-1. Requirements Analysis and Architecture Design
+A local application using Yolo to automatically detect industrial safety violations in real time. The system processes video streams from cameras and USB devices, recognizes the absence of helmets and protective clothing, and records incidents with screenshots saved locally.
 
-2. AI Model and Backend Development
+---
 
-3. Web Interface Development
+## Development plan
 
-4. Integration and Deployment
+###1. Making a plan and creating a repository on GitHub
+- Defining the project structure (folders, modules)
+- Create a repository on GitHub
+- Set it up. "gitignore"
+- Draw up and approve a work plan
 
-5. Testing, Documentation, and Implementation
+---
 
-<hr>
-1. Requirements Analysis and Architecture Design
-1.1. Specification Definition
-Analysis of typical workplace safety violations in manufacturing environments (missing hard hats, lack of protective clothing, entering danger zones, smoke detection, fire hazards).
+###2. Connecting libraries and installing utilities
+- Setting up the development environment (CMake, compiler)
+- PPE connection for working with videos and images
+- Connecting a library for neural network output
+- Connecting the library for logging 
+- Setting up the project build
 
-Collection and annotation of datasets (images/video from factory cameras, public datasets).
+---
 
-Definition of detection objects (people, PPE, machinery, safety barriers).
+### 3. We connect the AI and configure it to work correctly
+- We are implementing a video capture module 
+- Choosing the neural network architecture (YOLO / SSD)
+- Integrate a pre-trained object detection model
+- Configuring logical output on the target platform (CPU/GPU)
 
-Selection of input data formats (RTSP streams, recorded video files, USB cameras).
+---
 
-1.2. Technology Selection and System Design
-Selection of computer vision frameworks (YOLOv8, TensorFlow, OpenCV).
+### 4. Neural network training for helmet recognition and implementation of basic logic
+- Preparation and annotation of a dataset (people, helmets, vests)
+- Performing model training
+- Display of detected violations on the screen
+- Checking the quality of speech recognition
+- Implementation of the basic logic for detecting violations
 
-Design of interaction scheme: IP Camera ↔ Backend Processor (GPU Server) ↔ Web Interface / Alert System.
+---
 
-Database structure design for storing incidents, violation snapshots, and statistics.
+###5. Add the phone's camera, recognize other security features, and save them
+- We implement support for broadcasting from the phone 
+- Expanding the data set: adding classes for protective vests, gloves, glasses
+- Additionally, we are teaching the model new classes
+- Integrate the recognition of additional security features into the main logic
+- Set up separate rules for each type of violation
+- Implement saving screenshots of violations
 
-Development of communication protocols (REST API, WebSocket, RTSP).
+---
 
-<hr>
-2. AI Model and Backend Development
-2.1. Training and Optimization of Computer Vision Models
-Training neural network models for object detection (hard hats, safety vests, people).
-
-Experimentation with architectures (YOLOv8, EfficientDet, Faster R-CNN).
-
-Model optimization for CPU/GPU inference (TensorRT, OpenVINO).
-
-Quality assessment (mAP, Precision, Recall, FPS).
-
-2.2. Video Stream Processing Backend Development
-Implementation of video stream capture and decoding module.
-
-Integration of trained model for real-time frame analysis.
-
-Development of rule-based logic (e.g., "person without hard hat in workshop #3").
-
-Alert generation and violation snapshot storage.
-
-REST API development for camera management, statistics retrieval, and event logs.
-
-<hr>
-3. Web Interface Development
-3.1. Monitoring Dashboard
-Interactive workshop map displaying active cameras and zone statuses.
-
-Video panel with live streams and overlaid detection bounding boxes.
-
-Recent violations feed with snapshot previews.
-
-Traffic light system: green/yellow/red safety status per zone.
-
-3.2. Analytics and Reporting Interface
-Violation charts by time, workshop, and violation type.
-
-Shift and employee report generation.
-
-Incident archive viewing with filtering capabilities.
-
-<hr>
-4. Integration and Deployment
-4.1. Factory Infrastructure Integration
-Connection to existing video surveillance systems (RTSP-compatible cameras).
-
-Configuration of automatic processing module startup.
-
-Integration with alert systems (public address, Telegram, email).
-
-4.2. Demonstration Module Development
-Creation of test bench for system capability presentations.
-
-Set of demonstration scenarios: hard hat detection, smoke detection, perimeter control.
-
-<hr>
-5. Testing, Documentation, and Implementation
-5.1. Comprehensive Testing
-Model accuracy testing on real-world data.
-
-Load testing with simultaneous processing of 8–16 cameras.
-
-System response time verification (from frame to alert).
-
-Fault tolerance testing (stream loss, module restart).
-
-5.2. Project Finalization
-Preparation of user and technical documentation.
-
-Training of security personnel on system operation.
-
-Final version deployment on client server.
-
-Planning of future development stages (new violation classes, integration with access control systems).
-
-<hr>
+### 6. Documentation and revision
+- Write technical documentation (architecture, installation, configuration)
+- Write user documentation (launching, working with the application)
+- Prepare instructions for connecting cameras
+- Prepare a README for GitHub
+- Prepare the final report
