@@ -34,7 +34,7 @@ A local application using Yolo to automatically detect industrial safety violati
 ---
 
 ### 4. Neural network training for helmet recognition and implementation of basic logic
-- Preparation and annotation of a dataset (people, helmets, vests)
+- Preparation and annotation of a dataset (people, vests)
 - Performing model training
 - Display of detected violations on the screen
 - Checking the quality of speech recognition
@@ -44,7 +44,7 @@ A local application using Yolo to automatically detect industrial safety violati
 
 ###5. Add the phone's camera, recognize other security features, and save them
 - We implement support for broadcasting from the phone 
-- Expanding the data set: adding classes for protective vests, gloves, glasses
+- Expanding the data set: adding classes for protective masks, helmets (helmet)
 - Additionally, we are teaching the model new classes
 - Integrate the recognition of additional security features into the main logic
 - Set up separate rules for each type of violation
