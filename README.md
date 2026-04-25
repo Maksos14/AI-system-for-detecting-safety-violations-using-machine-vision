@@ -1,60 +1,120 @@
-# Artificial intelligence system for detecting safety violations 
+# Инструкция по установке и запуску PPE Monitoring System
 
-## Description
-
-A local application using Yolo to automatically detect industrial safety violations in real time. The system processes video streams from cameras and USB devices, recognizes the absence of helmets and protective clothing, and records incidents with screenshots saved locally.
-
----
-
-## Development plan
-
-###1. Making a plan and creating a repository on GitHub
-- Defining the project structure (folders, modules)
-- Create a repository on GitHub
-- Set it up. "gitignore"
-- Draw up and approve a work plan
+## Системные требования
+- Windows 10 или 11
+- Веб-камера или смартфон (Android/iOS)
+- 4 ГБ оперативной памяти
 
 ---
 
-###2. Connecting libraries and installing utilities
-- Setting up the development environment (CMake, compiler)
-- PPE connection for working with videos and images
-- Connecting a library for neural network output
-- Connecting the library for logging 
-- Setting up the project build
+## 1. Подготовка камеры
+
+### Вариант А: Встроенная или USB веб-камера
+Ничего устанавливать не нужно. Камера определится автоматически.
+
+### Вариант Б: Смартфон как камера (через провод)
+
+**На компьютер:**
+- Скачай DroidCam: https://www.dev47apps.com
+- Установи программу
+
+**На телефон:**
+- Android: Google Play → DroidCam
+- iPhone: App Store → DroidCam
+
+**Подключение:**
+1. Подключи телефон к компьютеру через USB-кабель
+2. На телефоне включи "Отладку по USB" (настройки → для разработчиков)
+3. Запусти DroidCam на компьютере
+4. Включи "USB Tunnel" (Device → USB Tunnel)
+5. Запусти DroidCam на телефоне
+6. Нажми **Start** в DroidCam на компьютере
 
 ---
 
-### 3. We connect the AI and configure it to work correctly
-- We are implementing a video capture module 
-- Choosing the neural network architecture (YOLO / SSD)
-- Integrate a pre-trained object detection model
-- Configuring logical output on the target platform (CPU/GPU)
+## 2. Установка программы
+
+### Шаг 1: Установи Git
+- Скачай: https://git-scm.com/downloads
+- Установи с настройкам
+- и по умолчанию
+- Перезагрузи компьютер
+
+### Шаг 2: Установи Git LFS
+- Скачай: https://git-lfs.com
+- Установи как обычную программу
+- Открой командную строку (Win+R → cmd) и выполни:
+  
+git lfs install
+
+
+### Шаг 3: Склонируй репозиторий
+- Открой командную строку
+- Выполни:
+
+git clone https://github.com/Maksos14/AI-system-for-detecting-safety-violations-using-machine-vision
+
+cd PPE-Monitoring-System
+
+### Шаг 4: Модели скачаются автоматически
+Git LFS сам скачает все файлы моделей в папку `ppe_models`
 
 ---
 
-### 4. Neural network training for helmet recognition and implementation of basic logic
-- Preparation and annotation of a dataset (people, vests)
-- Performing model training
-- Display of detected violations on the screen
-- Checking the quality of speech recognition
-- Implementation of the basic logic for detecting violations
+## 3. Запуск
+
+1. Открой папку `PPE-Monitoring-System`
+2. Дважды кликни по файлу `PPE_Monitor.exe`
+3. Откроется окно с камерой — система работает
 
 ---
 
-###5. Add the phone's camera, recognize other security features, and save them
-- We implement support for broadcasting from the phone 
-- Expanding the data set: adding classes for protective masks, helmets (helmet)
-- Additionally, we are teaching the model new classes
-- Integrate the recognition of additional security features into the main logic
-- Set up separate rules for each type of violation
-- Implement saving screenshots of violations
+## 4. Управление
+
+| Клавиша | Действие |
+|---------|----------|
+| `1` | Вкл/Выкл проверку касок         |   
+| `2` | Вкл/Выкл проверку жилетов       |
+| `3` | Вкл/Выкл проверку масок         |
+| `+` | Увеличить время до нарушения    |
+| `-` | Уменьшить время до нарушения    |
+| `r` | Сбросить список нарушений       |
+| `s` | Сделать скриншот                |
+| `q` | Выйти из программы              |
 
 ---
 
-### 6. Documentation and revision
-- Write technical documentation (architecture, installation, configuration)
-- Write user documentation (launching, working with the application)
-- Prepare instructions for connecting cameras
-- Prepare a README for GitHub
-- Prepare the final report
+## 5. Как это работает
+
+1. Камера сканирует людей в кадре
+2. Проверяет наличие касок, жилетов и масок
+3. Если защиты нет больше 10 секунд:
+ - Срабатывает звуковой сигнал
+ - Делается скриншот
+ - Сохраняется в папку `violations/`
+
+---
+
+## 6. Проблемы и решения
+
+| Проблема | Решение |
+|----------|---------|
+| `git: команда не найдена`     | Установи Git (шаг 2.1)                                        |
+| `git lfs: команда не найдена` | Установи Git LFS (шаг 2.2)                                    |  
+| Модели не скачались           | Выполни в папке проекта: `git lfs pull`                       |
+| Не открывается программа      | Проверь папку `ppe_models` — внутри должны быть файлы `.pt`   |
+| Черный экран                  | Закрой Zoom, Skype, другие программы с камерой                |
+| Камера телефона не работает   | Перезапусти DroidCam, проверь USB                             |
+| Не видит людей                | Включи освещение                                              |
+
+---
+
+## 7. Обновление
+
+git pull origin main
+
+git lfs pull
+
+## 8. ССылка на видео-инструкцию по запуску проекта
+
+https://drive.google.com/drive/u/0/my-drive
