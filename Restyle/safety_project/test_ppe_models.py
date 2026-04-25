@@ -20,30 +20,30 @@ models_to_test = [
 loaded_models = []
 for model_path, model_name in models_to_test:
     try:
-        print(f"\n🔄 Loading {model_name}...")
+        print(f"\n Loading {model_name}...")
         print(f"   Path: {model_path}")
         
         if os.path.exists(model_path):
             model = YOLO(model_path)
-            print(f"✅ SUCCESS! Model loaded: {model_name}")
+            print(f" SUCCESS! Model loaded: {model_name}")
             print(f"   Classes in this model: {model.names}")
             loaded_models.append((model, model_name, model_path))
         else:
-            print(f"❌ File not found: {model_path}")
+            print(f" File not found: {model_path}")
     except Exception as e:
-        print(f"❌ Failed to load {model_name}: {e}")
+        print(f" Failed to load {model_name}: {e}")
 
 if not loaded_models:
-    print("\n❌ No models could be loaded! Check if files exist in ppe_models folder.")
+    print("\n No models could be loaded! Check if files exist in ppe_models folder.")
     exit()
 
-print(f"\n✅ Loaded {len(loaded_models)} model(s)")
+print(f"\n Loaded {len(loaded_models)} model(s)")
 print("=" * 60)
 
 # Выбираем первую модель для начала
 current_model_idx = 0
 model, model_name, model_path = loaded_models[current_model_idx]
-print(f"\n🔴 USING MODEL: {model_name}")
+print(f"\n USING MODEL: {model_name}")
 
 # НАСТРОЙКИ ПО УМОЛЧАНИЮ
 detect_helmet = True
@@ -76,9 +76,9 @@ alarm_end_time = 0
 violations_folder = "violations"
 if not os.path.exists(violations_folder):
     os.makedirs(violations_folder)
-    print(f"📁 Created folder: {violations_folder}")
+    print(f" Created folder: {violations_folder}")
 else:
-    print(f"📁 Using existing folder: {violations_folder}")
+    print(f" Using existing folder: {violations_folder}")
 
 def play_alarm():
     """Воспроизводит звуковой сигнал тревоги"""
@@ -96,7 +96,7 @@ def play_alarm():
                 winsound.Beep(1000, 500)
                 time.sleep(0.1)
         except:
-            print("\n🔔 ALARM! 🔔")
+            print("\n ALARM! ")
         
         global current_alarm
         current_alarm = False
@@ -109,7 +109,7 @@ def log_violation(ppe_type, frame, person_count):
     
     # Проверяем лимит нарушений
     if len(violation_log) >= MAX_VIOLATIONS:
-        print(f"⚠️ Maximum violations ({MAX_VIOLATIONS}) reached! Not saving more.")
+        print(f" Maximum violations ({MAX_VIOLATIONS}) reached! Not saving more.")
         return
     
     timestamp = time.strftime("%Y%m%d_%H%M%S")
@@ -125,7 +125,7 @@ def log_violation(ppe_type, frame, person_count):
     }
     violation_log.append(violation)
     
-    print(f"\n⚠️ VIOLATION DETECTED! ⚠️")
+    print(f"\n VIOLATION DETECTED! ")
     print(f"   Type: NO {ppe_type.upper()}")
     print(f"   Time: {violation['time']}")
     print(f"   People on screen: {person_count}")
@@ -212,10 +212,10 @@ cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 if not cap.isOpened():
-    print("❌ Cannot open camera!")
+    print(" Cannot open camera!")
     exit()
 
-print("\n🎮 CONTROLS:")
+print("\n CONTROLS:")
 print("   1 - Toggle HELMET detection")
 print("   2 - Toggle VEST detection")
 print("   3 - Toggle MASK detection")
@@ -225,7 +225,7 @@ print("   - - Decrease violation threshold (-5 sec)")
 print("   r - Reset violation log")
 print("   s - Save screenshot")
 print("   q - Quit")
-print(f"\n⚙️ RULES:")
+print(f"\n RULES:")
 print(f"   - Violation counted ONLY if person is on screen")
 print(f"   - Missing PPE > {VIOLATION_TIME_SEC}s = VIOLATION + screenshot + alarm")
 print(f"   - No person on screen = no timer, no violation")
@@ -331,7 +331,7 @@ while True:
             if not has_helmet:
                 if helmet_violation_start is None:
                     helmet_violation_start = current_time
-                    print(f"⏱️ No helmet detected! Timer started...")
+                    print(f" No helmet detected! Timer started...")
                 else:
                     elapsed = current_time - helmet_violation_start
                     if elapsed >= VIOLATION_TIME_SEC:
@@ -339,11 +339,11 @@ while True:
                         helmet_violation_start = current_time
             else:
                 if helmet_violation_start is not None:
-                    print(f"✅ Helmet detected! Timer reset.")
+                    print(f" Helmet detected! Timer reset.")
                     helmet_violation_start = None
         else:
             if helmet_violation_start is not None:
-                print(f"👤 No people on screen, helmet timer reset.")
+                print(f" No people on screen, helmet timer reset.")
                 helmet_violation_start = None
     
     # ПРОВЕРКА ЖИЛЕТОВ
@@ -354,7 +354,7 @@ while True:
             if not has_vest:
                 if vest_violation_start is None:
                     vest_violation_start = current_time
-                    print(f"⏱️ No vest detected! Timer started...")
+                    print(f" No vest detected! Timer started...")
                 else:
                     elapsed = current_time - vest_violation_start
                     if elapsed >= VIOLATION_TIME_SEC:
@@ -362,11 +362,11 @@ while True:
                         vest_violation_start = current_time
             else:
                 if vest_violation_start is not None:
-                    print(f"✅ Vest detected! Timer reset.")
+                    print(f" Vest detected! Timer reset.")
                     vest_violation_start = None
         else:
             if vest_violation_start is not None:
-                print(f"👤 No people on screen, vest timer reset.")
+                print(f" No people on screen, vest timer reset.")
                 vest_violation_start = None
     
     # ПРОВЕРКА МАСОК
@@ -385,11 +385,11 @@ while True:
                         mask_violation_start = current_time
             else:
                 if mask_violation_start is not None:
-                    print(f"✅ Mask detected! Timer reset.")
+                    print(f" Mask detected! Timer reset.")
                     mask_violation_start = None
         else:
             if mask_violation_start is not None:
-                print(f"👤 No people on screen, mask timer reset.")
+                print(f" No people on screen, mask timer reset.")
                 mask_violation_start = None
     
     # Проверяем, закончился ли сигнал тревоги
@@ -413,7 +413,7 @@ while True:
             cv2.putText(frame, "HELMET: NO PEOPLE", (w-310, y_offset), 
                        cv2.FONT_HERSHEY_SIMPLEX, 0.45, (100, 100, 100), 1)
         elif helmet_count > 0:
-            cv2.putText(frame, "HELMET: PROTECTED ✅", (w-310, y_offset), 
+            cv2.putText(frame, "HELMET: PROTECTED ", (w-310, y_offset), 
                        cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 255, 0), 1)
         elif helmet_violation_start:
             elapsed = int(current_time - helmet_violation_start)
@@ -431,7 +431,7 @@ while True:
             cv2.putText(frame, "VEST: NO PEOPLE", (w-310, y_offset), 
                        cv2.FONT_HERSHEY_SIMPLEX, 0.45, (100, 100, 100), 1)
         elif vest_count > 0:
-            cv2.putText(frame, "VEST: PROTECTED ✅", (w-310, y_offset), 
+            cv2.putText(frame, "VEST: PROTECTED ", (w-310, y_offset), 
                        cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 255, 0), 1)
         elif vest_violation_start:
             elapsed = int(current_time - vest_violation_start)
@@ -449,7 +449,7 @@ while True:
             cv2.putText(frame, "MASK: NO PEOPLE", (w-310, y_offset), 
                        cv2.FONT_HERSHEY_SIMPLEX, 0.45, (100, 100, 100), 1)
         elif mask_count > 0:
-            cv2.putText(frame, "MASK: PROTECTED ✅", (w-310, y_offset), 
+            cv2.putText(frame, "MASK: PROTECTED ", (w-310, y_offset), 
                        cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 255, 0), 1)
         elif mask_violation_start:
             elapsed = int(current_time - mask_violation_start)
@@ -491,38 +491,38 @@ while True:
         detect_helmet = not detect_helmet
         if not detect_helmet:
             helmet_violation_start = None
-        print(f"\n🪖 HELMET detection: {'ON' if detect_helmet else 'OFF'}")
+        print(f"\n HELMET detection: {'ON' if detect_helmet else 'OFF'}")
     elif key == ord('2'):
         detect_vest = not detect_vest
         if not detect_vest:
             vest_violation_start = None
-        print(f"\n🦺 VEST detection: {'ON' if detect_vest else 'OFF'}")
+        print(f"\n VEST detection: {'ON' if detect_vest else 'OFF'}")
     elif key == ord('3'):
         detect_mask = not detect_mask
         if not detect_mask:
             mask_violation_start = None
-        print(f"\n😷 MASK detection: {'ON' if detect_mask else 'OFF'}")
+        print(f"\n MASK detection: {'ON' if detect_mask else 'OFF'}")
     elif key == ord('4'):
         if len(loaded_models) > 1:
             current_model_idx = (current_model_idx + 1) % len(loaded_models)
             model, model_name, model_path = loaded_models[current_model_idx]
-            print(f"\n🔄 SWITCHED TO: {model_name}")
+            print(f"\n SWITCHED TO: {model_name}")
             helmet_violation_start = None
             vest_violation_start = None
             mask_violation_start = None
     elif key == ord('+') or key == ord('='):
         VIOLATION_TIME_SEC = min(60, VIOLATION_TIME_SEC + 5)
-        print(f"\n⏱️ Violation threshold increased to: {VIOLATION_TIME_SEC}s")
+        print(f"\n Violation threshold increased to: {VIOLATION_TIME_SEC}s")
     elif key == ord('-') or key == ord('_'):
         VIOLATION_TIME_SEC = max(3, VIOLATION_TIME_SEC - 5)
-        print(f"\n⏱️ Violation threshold decreased to: {VIOLATION_TIME_SEC}s")
+        print(f"\n Violation threshold decreased to: {VIOLATION_TIME_SEC}s")
     elif key == ord('r'):
         violation_log.clear()
-        print(f"\n📋 Violation log cleared! Total: {len(violation_log)}")
+        print(f"\n Violation log cleared! Total: {len(violation_log)}")
     elif key == ord('s'):
         filename = f"screenshot_{time.strftime('%Y%m%d_%H%M%S')}.jpg"
         cv2.imwrite(filename, frame)
-        print(f"📸 Screenshot saved: {filename}")
+        print(f" Screenshot saved: {filename}")
     elif key == ord('q') or key == 27:
         break
 
@@ -532,12 +532,12 @@ cv2.destroyAllWindows()
 print("\n" + "=" * 60)
 print("FINAL REPORT")
 print("=" * 60)
-print(f"📊 Total violations detected: {len(violation_log)}")
+print(f" Total violations detected: {len(violation_log)}")
 if violation_log:
-    print("\n📋 VIOLATION LOG:")
+    print("\n VIOLATION LOG:")
     for i, v in enumerate(violation_log, 1):
         print(f"   {i}. {v['time']} - NO {v['type']} - People: {v['people_count']}")
-        print(f"      📸 {v['screenshot']}")
+        print(f"       {v['screenshot']}")
     
     # Сохраняем отчет в файл
     report_filename = f"violations_report_{time.strftime('%Y%m%d_%H%M%S')}.txt"
@@ -554,8 +554,8 @@ if violation_log:
             f.write(f"{i}. {v['time']} - NO {v['type']}\n")
             f.write(f"   People: {v['people_count']}\n")
             f.write(f"   Screenshot: {v['screenshot']}\n\n")
-    print(f"\n📄 Report saved to: {report_filename}")
+    print(f"\n Report saved to: {report_filename}")
 else:
-    print("\n✅ No violations detected. Great job!")
-print(f"\n✅ Monitoring finished! Violations saved to: {violations_folder}/")
+    print("\n No violations detected. Great job!")
+print(f"\n Monitoring finished! Violations saved to: {violations_folder}/")
 print("=" * 60)
